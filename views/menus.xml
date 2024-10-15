@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_custom_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">custom_dashboard</field>
+        <field name="context">{'selected_warehouse_id': False}</field>
+    </record>
+    
+    <menuitem name="Dashboard"
+    id="custom_dashboard_menu"
+    action="action_custom_dashboard"
+    sequence="1"/>
+
+</odoo>

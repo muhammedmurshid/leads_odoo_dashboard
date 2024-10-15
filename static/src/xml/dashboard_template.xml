@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="tijus_odoo_dashboards.dashboard_template" owl="1">
+        <section class="section dashboard_body">
+            <h1>Hello World</h1>
+        </section>
+    </t>
+</templates>
