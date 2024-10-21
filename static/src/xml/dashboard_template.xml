@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="tijus_odoo_dashboards.dashboard_template" owl="1">
+    <t t-name="tijus_odoo_dashboard.dashboard_template" owl="1">
         <section class="section dashboard_body">
             <div class="container">
                 <div class="row">

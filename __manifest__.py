@@ -9,9 +9,9 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'tijus_odoo_dashboards/static/src/xml/dashboard_template.xml',
-            'tijus_odoo_dashboards/static/src/css/style.scss',
-            'tijus_odoo_dashboards/static/src/js/dashboards.js',
+            'tijus_odoo_dashboard/static/src/xml/dashboard_template.xml',
+            'tijus_odoo_dashboard/static/src/css/style.scss',
+            'tijus_odoo_dashboard/static/src/js/dashboards.js',
         ],
     },
     'demo': [],

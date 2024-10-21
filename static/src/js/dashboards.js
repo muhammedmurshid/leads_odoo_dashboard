@@ -76,5 +76,5 @@ class CustomDashboard extends Component {
 
 }
 
-CustomDashboard.template = "tijus_odoo_dashboards.dashboard_template";
+CustomDashboard.template = "tijus_odoo_dashboard.dashboard_template";
 registry.category("actions").add("custom_dashboard", CustomDashboard);
