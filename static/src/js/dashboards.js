@@ -68,11 +68,11 @@ class CustomDashboard extends Component {
         // this.action.doAction(action_data)
     }
 
-    getDomain(api_endpoint, req_domain){
-        jsonrpc('/custom_dashboard/get_dashboard_data', {'hello': 'guys'}).then((res_data)=>{
-            this.state.dashboardStats = res_data.dashboardStats
-        })
-    }
+    // getDomain(api_endpoint, req_domain){
+    //     jsonrpc('/custom_dashboard/get_dashboard_data', {'hello': 'guys'}).then((res_data)=>{
+    //         this.state.dashboardStats = res_data.dashboardStats
+    //     })
+    // }
 
 }
 
