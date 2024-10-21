@@ -2,7 +2,66 @@
 <templates id="template" xml:space="preserve">
     <t t-name="tijus_odoo_dashboards.dashboard_template" owl="1">
         <section class="section dashboard_body">
-            <h1>Hello World</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mt32">
+                        <h4 class="tk-primary">Sales</h4>
+                    </div>
+                    <hr class="border-primary mt-1"/>
+
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.callWindowAction('tow_request')">
+                        <div class="card" style="background-color: #dd8787 !important">
+                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
+                                <h4 class="tk-st-1 align-middle">Today</h4>
+                                <h6 class="tk-st-2" id="tow_requests_count">
+                                    <t t-esc="state.dashboardStats['sales_today']"/>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                        <div class="card" style="background-color: #e2ab78 !important">
+                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
+                                <h4 class="tk-st-1 align-middle">This Week</h4>
+                                <h6 class="tk-st-2" id="tow_requests_count">
+                                    <t t-esc="state.dashboardStats['sales_this_week']"/>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                        <div class="card" style="background-color: #6cd2e4 !important">
+                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
+                                <h4 class="tk-st-1 align-middle">This Month</h4>
+                                <h6 class="tk-st-2" id="tow_requests_count">
+                                    <t t-esc="state.dashboardStats['sales_this_month']"/>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                        <div class="card" style="background-color: #1bd835 !important">
+                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
+                                <h4 class="tk-st-1 align-middle">This Quarter</h4>
+                                <h6 class="tk-st-2" id="tow_requests_count">
+                                    <t t-esc="state.dashboardStats['sales_this_quarter']"/>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                        <div class="card" style="background-color: #ee1ff5 !important">
+                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
+                                <h4 class="tk-st-1 align-middle">This Year</h4>
+                                <h6 class="tk-st-2" id="tow_requests_count">
+                                    <t t-esc="state.dashboardStats['sales_this_year']"/>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </t>
 </templates>

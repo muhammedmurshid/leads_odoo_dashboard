@@ -15,6 +15,9 @@ class CustomDashboard extends Component {
         this.rpc = useService("rpc");
         this.action = useService("action");
         this.orm = useService("orm");
+        this.user_id = false
+
+        this.initializeStateValues();
 
         useSubEnv({
             config: {
@@ -22,18 +25,55 @@ class CustomDashboard extends Component {
                 ...this.env.config,
             },
         });
-        
-            jsonrpc('/custom_dashboard/test', {'hello': 'guys'}).then((res)=>{
 
-                console.log(res)
+        onWillStart(async () => {
+            jsonrpc('/custom_dashboard/get_dashboard_data', {'hello': 'guys'}).then((res_data)=>{
+                this.state.dashboardStats = res_data.dashboardStats
             })
+          });
+        
     }
 
 
-
-    setStateValues() {
-
+    initializeStateValues() {
+        this.state = useState({
+            currency: '₹',
+            dashboardStats: {
+                'sales_today': 0,
+                'sales_this_week':0,
+                'sales_this_month':0,
+                'sales_this_quarter':0,
+                'sales_this_year':0,
+            }
+        })
     }
+
+    callWindowAction(action_model, period){
+        var self = this;
+        let action = {}
+        if(action_model=='sale.order'){
+
+            action = {
+                type: 'ir.actions.act_window',
+                name: name,
+                res_model: model,
+                view_mode: 'kanban',
+                views: [[false, 'list'], [false, 'form']],
+                target: 'current',
+                context: { 'create': false },
+                domain: domain,
+            }
+        }
+        console.log(this)
+        // this.action.doAction(action_data)
+    }
+
+    getDomain(api_endpoint, req_domain){
+        jsonrpc('/custom_dashboard/get_dashboard_data', {'hello': 'guys'}).then((res_data)=>{
+            this.state.dashboardStats = res_data.dashboardStats
+        })
+    }
+
 }
 
 CustomDashboard.template = "tijus_odoo_dashboards.dashboard_template";
