@@ -19,7 +19,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
+                         t-on-click="() => this.viewDashboardStatic('tow_request')">
                         <div class="card" style="background-color: #e2ab78 !important">
                             <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
                                 <h4 class="tk-st-1 align-middle">This Week</h4>
@@ -29,7 +30,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
+                         t-on-click="() => this.viewDashboardStatic('tow_request')">
                         <div class="card" style="background-color: #6cd2e4 !important">
                             <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
                                 <h4 class="tk-st-1 align-middle">This Month</h4>
@@ -39,7 +41,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
+                         t-on-click="() => this.viewDashboardStatic('tow_request')">
                         <div class="card" style="background-color: #1bd835 !important">
                             <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
                                 <h4 class="tk-st-1 align-middle">This Quarter</h4>
@@ -49,7 +52,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.viewDashboardStatic('tow_request')">
+                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
+                         t-on-click="() => this.viewDashboardStatic('tow_request')">
                         <div class="card" style="background-color: #ee1ff5 !important">
                             <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
                                 <h4 class="tk-st-1 align-middle">This Year</h4>
@@ -60,7 +64,93 @@
                         </div>
                     </div>
                 </div>
+                <br/>
+                <h3 align="center">Sales Person-wise Sales Report</h3>
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Total Sale Amount</th>
+                        <th>Number of Sales</th>
+                        <th>Top Product</th>
+                    </tr>
+                </thead>
+                    <tbody>
+
+                        <tr t-foreach="state.dashboardStats['employee_sales_data']" t-as="employee"
+                            t-key="employee['name']">
+                        <td>
+                            <t t-esc="employee['name']"/>
+                        </td>
+                            <td>
+                            <t t-esc="employee['total_sale_amount']"/>
+                        </td>
+                            <td>
+                            <t t-esc="employee['number_of_sales']"/>
+                        </td>
+                            <td>
+                            <t t-esc="employee['top_product']"/>
+                        </td>
+                    </tr>
+
+                        <tr t-if="!state.dashboardStats['employee_sales_data'] || state.dashboardStats['employee_sales_data'].length === 0">
+                        <td colspan="4">No employee data available</td>
+                    </tr>
+                </tbody>
+            </table>
+                <br/>
+                <h3 align="center">Course-wise Sales Report</h3>
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Total Sale Amount</th>
+                        <th>No. of Sales</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    <t t-if="state.dashboardStats['product_sales_data'].length > 0">
+                        <tr t-foreach="state.dashboardStats['product_sales_data']" t-as="product"
+                            t-key="product['name']">
+                            <td><t t-esc="product['name']"/></td>
+                            <td><t t-esc="product['total_sale_amount']"/></td>
+                            <td><t t-esc="product['number_of_sales']"/></td>
+                        </tr>
+                    </t>
+                        <t t-else="">
+                        <tr>
+                            <td colspan="3">No product sales data available</td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+                <br/>
+                <h3 align="center">Zeero Revenue</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="state.dashboardStats['zero_sales_employees'].length > 0">
+                        <tr t-foreach="state.dashboardStats['zero_sales_employees']" t-as="employee"
+                            t-key="employee['name']">
+                        <td>
+                            <t t-esc="employee['name']"/>
+                        </td>
+
+                        </tr>
+                        </t>
+
+                        <tr t-if="!state.dashboardStats['zero_sales_employees'] || state.dashboardStats['employee_sales_data'].length === 0">
+                        <td colspan="4">No employee data available</td>
+                    </tr>
+                </tbody>
+                </table>
+
             </div>
+
 
         </section>
     </t>
