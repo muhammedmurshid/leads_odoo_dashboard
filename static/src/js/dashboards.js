@@ -1,13 +1,13 @@
-        /** @odoo-module **/
-        import { registry } from "@web/core/registry";
-        import { Layout } from "@web/search/layout";
-        import { getDefaultConfig } from "@web/views/view";
-        import { useService } from "@web/core/utils/hooks";
-        import { jsonrpc } from "@web/core/network/rpc_service";
-        import { rpc } from "@web/core/network/rpc_service";
+/** @odoo-module **/
+import { registry } from "@web/core/registry";
+import { Layout } from "@web/search/layout";
+import { getDefaultConfig } from "@web/views/view";
+import { useService } from "@web/core/utils/hooks";
+import { jsonrpc } from "@web/core/network/rpc_service";
+import { rpc } from "@web/core/network/rpc_service";
 
-        const { Component, useSubEnv, useState, onMounted, onWillStart, useRef } = owl;
-        import { loadJS, loadCSS } from "@web/core/assets"
+const { Component, useSubEnv, useState, onMounted, onWillStart, useRef } = owl;
+import { loadJS, loadCSS } from "@web/core/assets"
 
         class CustomDashboard extends Component {
 
@@ -38,6 +38,8 @@
             initializeStateValues() {
                 this.state = useState({
                     currency: '₹',
+                    from_date: '',
+                    to_date: '',
                      dashboardStats: {
                         'sales_today': 0,
                         'sales_this_week': 0,
@@ -69,6 +71,30 @@
                 }
                 console.log(this)
                 // this.action.doAction(action_data)
+            }
+            fetchDashboardData() {
+                // Call the backend with date filters if available
+                jsonrpc('/custom_dashboard/get_dashboard_data', {
+                    from_date: this.state.from_date,
+                    to_date: this.state.to_date
+                }).then((res_data) => {
+                    this.state.dashboardStats = res_data.dashboardStats;
+                });
+            }
+
+            filterByDate() {
+                // Get date values from input fields
+                console.log('hi')
+                const fromDateInput = document.getElementById('from_date');
+                const toDateInput = document.getElementById('to_date');
+
+                if (fromDateInput && toDateInput) {
+                    this.state.from_date = fromDateInput.value;
+                    this.state.to_date = toDateInput.value;
+                    console.log('hi', this.state.from_date, this.state.to_date)
+                    // Fetch dashboard data with filtered dates
+                    this.fetchDashboardData();
+                }
             }
 
             // getDomain(api_endpoint, req_domain){

@@ -13,21 +13,33 @@ from . import helpers as helper_tools
 class DashBoardsCustom(http.Controller):
 
     @http.route('/custom_dashboard/get_dashboard_data', type='json', auth='user')
-    def dashboard_test_call(self, **kw):
+    def dashboard_test_call(self, from_date=None, to_date=None, **kw):
+        # Convert dates from strings if provided
+        # print("Received Dates:", from_date, to_date)
+        if from_date and to_date:
+            from_date = datetime.strptime(from_date, "%Y-%m-%d")
+            to_date = datetime.strptime(to_date, "%Y-%m-%d")
+            # print('dates', from_date, to_date)
         print(kw)
         partners = request.env['res.partner'].search([])
         dashboardStats = {}
-        dashboardStats.update(self.get_sales_data())
+        dashboardStats.update(self.get_sales_data(from_date, to_date))
         return {'partners': partners.mapped('name'), 'username': request.env.user.name, 'dashboardStats': dashboardStats}
 
-    def get_sales_data(self):
-        employee_sales_data = self.get_employee_sales_data()
-        product_sales_data = self.get_product_sales_data()  # Corrected this line
-        zero_sales_employees = self.get_employees_with_zero_sales()  # Fetch employees with zero sales
+    def get_sales_data(self, from_date=None, to_date=None):
+        if from_date:
+            from_date = fields.Date.from_string(from_date)
+            print(from_date, 'from_date')
+        if to_date:
+            to_date = fields.Date.from_string(to_date)
+            print(to_date, 'to')
+        employee_sales_data = self.get_employee_sales_data(from_date,to_date)
+        product_sales_data = self.get_product_sales_data(from_date,to_date)  # Corrected this line
+        zero_sales_employees = self.get_employees_with_zero_sales(from_date,to_date)  # Fetch employees with zero sales
 
         print(zero_sales_employees, 'data')
         return {
-            'sales_today': self.get_sales_revenue(period='today'),
+            'sales_today': self.get_sales_revenue(period='today' ),
             'sales_this_week': self.get_sales_revenue(period='week'),
             'sales_this_month': self.get_sales_revenue(period='month'),
             'sales_this_quarter': self.get_sales_revenue(period='quarter'),
@@ -71,41 +83,66 @@ class DashBoardsCustom(http.Controller):
         domain = [('state', 'in', ['sale', 'done']), ('date_order', '>=', start_date), ('date_order', '<=', end_date),]
         return domain
 
-    def get_employees_with_zero_sales(self):
+    def get_employees_with_zero_sales(self, from_date=None, to_date=None):
         users = request.env['res.users'].search([('employee_id.department_id.name', '=', 'Sales')])  # Get all users
         zero_sales_employees = []
 
+        # Convert string dates to datetime objects if provided
+        if from_date:
+            from_date = fields.Date.from_string(from_date)
+        if to_date:
+            to_date = fields.Date.from_string(to_date)
+
         for user in users:
-            # Check if the user has any sales orders
-            sales_orders = request.env['sale.order'].search(
-                [('user_id', '=', user.id), ('state', 'in', ['sale', 'done'])])
+            # Build domain for sales orders
+            domain = [
+                ('user_id', '=', user.id),
+                ('state', 'in', ['sale', 'done'])
+            ]
+            if from_date and to_date:
+                domain += [('date_order', '>=', from_date), ('date_order', '<=', to_date)]
+
+            # Check if the user has any sales orders in the specified date range
+            sales_orders = request.env['sale.order'].search(domain)
             if not sales_orders:
-                print('not sale order')# If no sales orders found
-                zero_sales_employees.append({'id': user.id, 'name': user.name})  # Add ID
+                print('No sale orders found for user:', user.name)  # Debugging line
+                zero_sales_employees.append(
+                    {'id': user.id, 'name': user.name})  # Add user to the list if no sales orders found
 
         return zero_sales_employees
 
-    def get_product_sales_data(self):
-        # This function should query product sales and return them in the required format
+    def get_product_sales_data(self, from_date=None, to_date=None):
         products = request.env['product.product'].search([])
+
+        # Convert string dates to date objects if provided
+        if from_date:
+            from_date = fields.Date.from_string(from_date)
+        if to_date:
+            to_date = fields.Date.from_string(to_date)
 
         product_sales_data = []
         for product in products:
-            # Get the sale order lines related to the product
-            sale_order_lines = request.env['sale.order.line'].search([('product_id', '=', product.id)])
+            # Build domain for sale order lines related to the product and date range
+            domain = [('product_id', '=', product.id), ('order_id.state', 'in', ['done','sale'])]
+            if from_date and to_date:
+                domain += [('order_id.date_order', '>=', from_date), ('order_id.date_order', '<=', to_date)]
+
+            # Get the sale order lines within the date range
+            sale_order_lines = request.env['sale.order.line'].search(domain)
 
             # Calculate total sales and number of sales
-            total_sales = sum(sale_order_lines.mapped('order_id.amount_total'))  # Total amount from related sale orders
-            number_of_sales = len(sale_order_lines.mapped('order_id'))  # Count unique sale orders
+            total_sales = sum(sale_order_lines.mapped('order_id.amount_total'))
+            number_of_sales = len(sale_order_lines.mapped('order_id'))
 
             product_sales_data.append({
                 'name': product.name,
                 'total_sale_amount': total_sales,
                 'number_of_sales': number_of_sales
             })
+
         return product_sales_data
 
-    def get_employee_sales_data(self):
+    def get_employee_sales_data(self, from_date=None, to_date=None):
         # Search for all users where their employee's department is "Sales"
         users = request.env['res.users'].search([
             ('employee_id.department_id.name', '=', 'Sales')
@@ -113,13 +150,25 @@ class DashBoardsCustom(http.Controller):
 
         employee_sales_data = []
 
+        # Convert string dates to datetime objects if provided
+        if from_date:
+            from_date = fields.Date.from_string(from_date)
+        if to_date:
+            to_date = fields.Date.from_string(to_date)
+
         for user in users:
             print(user.id, 'emp')  # For debugging
-            # Search for sales orders related to the user in 'sale' or 'done' states
-            sales_orders = request.env['sale.order'].search([
+
+            # Set the search domain to include date range if from_date and to_date are provided
+            domain = [
                 ('user_id', '=', user.id),
                 ('state', 'in', ['sale', 'done'])
-            ])
+            ]
+            if from_date and to_date:
+                domain += [('date_order', '>=', from_date), ('date_order', '<=', to_date)]
+
+            # Search for sales orders related to the user within the date range
+            sales_orders = request.env['sale.order'].search(domain)
 
             # Calculate total sales amount for this user
             total_sales_amount = sum(order.amount_total for order in sales_orders)

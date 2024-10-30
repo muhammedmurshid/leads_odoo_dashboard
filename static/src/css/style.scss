@@ -1,4 +1,7 @@
 $dashboard-bg : #ffffff !default;
+$header-bg-color: #4e73df;
+$header-font-color: #ffffff;
+$header-font-weight: bold;
 
 .o_action_manager {
     overflow: auto !important;
@@ -6,6 +9,25 @@ $dashboard-bg : #ffffff !default;
 
 .dashboard_body {
     background: $dashboard-bg !important;
+     .table-header {
+        background-color: $header-bg-color;
+        color: $header-font-color;
+        font-weight: $header-font-weight;
+    }
+    .small-input {
+        width: 100%;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    h3, h4 {
+        font-weight: bold;
+        color: #2b3547;
+    }
+    .btn-primary {
+        background-color: #4e73df;
+        border-color: #4e73df;
+    }
+
     .tk-charts {
         width: 100%;
         height: 80vh;

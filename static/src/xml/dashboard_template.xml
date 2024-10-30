@@ -3,9 +3,24 @@
     <t t-name="tijus_odoo_dashboard.dashboard_template" owl="1">
         <section class="section dashboard_body">
             <div class="container">
+
+                <div class="row mb-3 justify-content-end">
+                    <div class="col-md-3">
+                        <label for="from_date">From Date</label>
+                        <input type="date" id="from_date" t-model="state.from_date" class="form-control small-input"/>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="to_date">To Date</label>
+                        <input type="date" id="to_date" t-model="state.to_date" class="form-control small-input"/>
+                    </div>
+                    <div class="col-md-2 align-self-end text-right">
+                        <button class="btn btn-primary" t-on-click="() => this.filterByDate()">Filter</button>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-8 mt32">
-                        <h4 class="tk-primary">Sales</h4>
+                    <div class="col-md-8 mt-3 text-center">
+
+                        <h4 class="tk-primary font-weight-bold" align="center">Sales</h4>
                     </div>
                     <hr class="border-primary mt-1"/>
 
@@ -65,7 +80,7 @@
                     </div>
                 </div>
                 <br/>
-                <h3 align="center">Sales Person-wise Sales Report</h3>
+                <h3 class="text-center font-weight-bold">Sales Person-wise Sales Report</h3>
                 <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -99,7 +114,7 @@
                 </tbody>
             </table>
                 <br/>
-                <h3 align="center">Course-wise Sales Report</h3>
+                <h3 class="tk-primary font-weight-bold" align="center">Course-wise Sales Report</h3>
                 <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -125,7 +140,7 @@
                 </tbody>
             </table>
                 <br/>
-                <h3 align="center">Zeero Revenue</h3>
+                <h3 class="tk-primary font-weight-bold" align="center">Zeero Revenue</h3>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
