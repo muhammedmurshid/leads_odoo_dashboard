@@ -3,7 +3,7 @@
     'author': 'Murshid',
     'version': "17.0.0.0",
     'sequence': "0",
-    'depends': ['base','web', 'sale','crm'],
+    'depends': ['base','web', 'custom_leads'],
     'data': [
         'views/menus.xml',
     ],
