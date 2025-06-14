@@ -1,6 +1,6 @@
 {
-    'name': "Tiju's Custom Dashboards",
-    'author': 'Rizwaan',
+    'name': "Leads Custom Dashboards",
+    'author': 'Murshid',
     'version': "17.0.0.0",
     'sequence': "0",
     'depends': ['base','web', 'sale','crm'],
@@ -9,14 +9,14 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'tijus_odoo_dashboard/static/src/xml/dashboard_template.xml',
-            'tijus_odoo_dashboard/static/src/css/style.scss',
-            'tijus_odoo_dashboard/static/src/js/dashboards.js',
+            'leads_odoo_dashboard/static/src/xml/dashboard_template.xml',
+            'leads_odoo_dashboard/static/src/css/style.scss',
+            'leads_odoo_dashboard/static/src/js/dashboards.js',
         ],
     },
     'demo': [],
-    'summary': "Tiju's Custom Dashboards",
-    'description': "Tiju's Custom Dashboards",
+    'summary': "Leads Custom Dashboards",
+    'description': "Leads Custom Dashboards",
     'installable': True,
     'auto_install': False,
     'license': "LGPL-3",

@@ -6,10 +6,11 @@
         <field name="tag">custom_dashboard</field>
         <field name="context">{'selected_warehouse_id': False}</field>
     </record>
-    
-    <menuitem name="Dashboard"
-    id="custom_dashboard_menu"
-    action="action_custom_dashboard"
-    sequence="1"/>
+
+    <menuitem name="Leads Dashboard"
+              id="custom_dashboard_menu"
+              action="action_custom_dashboard"
+              sequence="1"
+              groups="custom_leads.group_lead_team_lead"/>
 
 </odoo>

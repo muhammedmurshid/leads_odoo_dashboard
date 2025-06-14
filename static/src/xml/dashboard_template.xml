@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="tijus_odoo_dashboard.dashboard_template" owl="1">
+    <t t-name="leads_odoo_dashboard.dashboard_template" owl="1">
         <section class="section dashboard_body">
             <div class="container">
 
@@ -17,81 +17,80 @@
                         <button class="btn btn-primary" t-on-click="() => this.filterByDate()">Filter</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8 mt-3 text-center">
+<!--                <div class="row">-->
+<!--                    <div class="col-md-8 mt-3 text-center">-->
 
-                        <h4 class="tk-primary font-weight-bold" align="center">Sales</h4>
-                    </div>
-                    <hr class="border-primary mt-1"/>
+<!--                        <h4 class="tk-primary font-weight-bold" align="center">Sales</h4>-->
+<!--                    </div>-->
+<!--                    <hr class="border-primary mt-1"/>-->
 
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.callWindowAction('tow_request')">
-                        <div class="card" style="background-color: #dd8787 !important">
-                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
-                                <h4 class="tk-st-1 align-middle">Today</h4>
-                                <h6 class="tk-st-2" id="tow_requests_count">
-                                    <t t-esc="state.dashboardStats['sales_today']"/>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
-                         t-on-click="() => this.viewDashboardStatic('tow_request')">
-                        <div class="card" style="background-color: #e2ab78 !important">
-                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
-                                <h4 class="tk-st-1 align-middle">This Week</h4>
-                                <h6 class="tk-st-2" id="tow_requests_count">
-                                    <t t-esc="state.dashboardStats['sales_this_week']"/>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
-                         t-on-click="() => this.viewDashboardStatic('tow_request')">
-                        <div class="card" style="background-color: #6cd2e4 !important">
-                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
-                                <h4 class="tk-st-1 align-middle">This Month</h4>
-                                <h6 class="tk-st-2" id="tow_requests_count">
-                                    <t t-esc="state.dashboardStats['sales_this_month']"/>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
-                         t-on-click="() => this.viewDashboardStatic('tow_request')">
-                        <div class="card" style="background-color: #1bd835 !important">
-                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
-                                <h4 class="tk-st-1 align-middle">This Quarter</h4>
-                                <h6 class="tk-st-2" id="tow_requests_count">
-                                    <t t-esc="state.dashboardStats['sales_this_quarter']"/>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-6 mb-4 mt8 mb16"
-                         t-on-click="() => this.viewDashboardStatic('tow_request')">
-                        <div class="card" style="background-color: #ee1ff5 !important">
-                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">
-                                <h4 class="tk-st-1 align-middle">This Year</h4>
-                                <h6 class="tk-st-2" id="tow_requests_count">
-                                    <t t-esc="state.dashboardStats['sales_this_year']"/>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                    <div class="col-md-2 col-6 mb-4 mt8 mb16" t-on-click="() => this.callWindowAction('tow_request')">-->
+<!--                        <div class="card" style="background-color: #dd8787 !important">-->
+<!--                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">-->
+<!--                                <h4 class="tk-st-1 align-middle">Today</h4>-->
+<!--                                <h6 class="tk-st-2" id="tow_requests_count">-->
+<!--                                    <t t-esc="state.dashboardStats['sales_today']"/>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2 col-6 mb-4 mt8 mb16"-->
+<!--                         t-on-click="() => this.viewDashboardStatic('tow_request')">-->
+<!--                        <div class="card" style="background-color: #e2ab78 !important">-->
+<!--                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">-->
+<!--                                <h4 class="tk-st-1 align-middle">This Week</h4>-->
+<!--                                <h6 class="tk-st-2" id="tow_requests_count">-->
+<!--                                    <t t-esc="state.dashboardStats['sales_this_week']"/>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2 col-6 mb-4 mt8 mb16"-->
+<!--                         t-on-click="() => this.viewDashboardStatic('tow_request')">-->
+<!--                        <div class="card" style="background-color: #6cd2e4 !important">-->
+<!--                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">-->
+<!--                                <h4 class="tk-st-1 align-middle">This Month</h4>-->
+<!--                                <h6 class="tk-st-2" id="tow_requests_count">-->
+<!--                                    <t t-esc="state.dashboardStats['sales_this_month']"/>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2 col-6 mb-4 mt8 mb16"-->
+<!--                         t-on-click="() => this.viewDashboardStatic('tow_request')">-->
+<!--                        <div class="card" style="background-color: #1bd835 !important">-->
+<!--                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">-->
+<!--                                <h4 class="tk-st-1 align-middle">This Quarter</h4>-->
+<!--                                <h6 class="tk-st-2" id="tow_requests_count">-->
+<!--                                    <t t-esc="state.dashboardStats['sales_this_quarter']"/>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-2 col-6 mb-4 mt8 mb16"-->
+<!--                         t-on-click="() => this.viewDashboardStatic('tow_request')">-->
+<!--                        <div class="card" style="background-color: #ee1ff5 !important">-->
+<!--                            <div class="card-body tk-card-body-height" style="color: #8b7f7f !important">-->
+<!--                                <h4 class="tk-st-1 align-middle">This Year</h4>-->
+<!--                                <h6 class="tk-st-2" id="tow_requests_count">-->
+<!--                                    <t t-esc="state.dashboardStats['sales_this_year']"/>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <br/>
                 <h3 class="text-center font-weight-bold">Sales Person-wise Sales Report</h3>
                 <table class="table table-bordered">
-                <thead>
+                <thead style="background-color: #c4d9a0;">
                     <tr>
                         <th>Employee Name</th>
                         <th>Total Sale Amount</th>
                         <th>Number of Sales</th>
-                        <th>Top Product</th>
+                        <!--                        <th>Top Product</th>-->
                     </tr>
                 </thead>
                     <tbody>
-
                         <tr t-foreach="state.dashboardStats['employee_sales_data']" t-as="employee"
                             t-key="employee['name']">
                         <td>
@@ -100,73 +99,78 @@
                             <td>
                             <t t-esc="employee['total_sale_amount']"/>
                         </td>
-                            <td>
+                            <td style="background-color:#f6f7f5;">
                             <t t-esc="employee['number_of_sales']"/>
                         </td>
-                            <td>
-                            <t t-esc="employee['top_product']"/>
-                        </td>
+                            <!--                            <td>-->
+                            <!--                            <t t-esc="employee['top_product']"/>-->
+                            <!--                        </td>-->
                     </tr>
 
                         <tr t-if="!state.dashboardStats['employee_sales_data'] || state.dashboardStats['employee_sales_data'].length === 0">
-                        <td colspan="4">No employee data available</td>
+                        <td colspan="3">No employee data available</td>
                     </tr>
                 </tbody>
             </table>
                 <br/>
-                <h3 class="tk-primary font-weight-bold" align="center">Course-wise Sales Report</h3>
+                <h3 class="text-center font-weight-bold">Lead Source-wise Employee Report</h3>
                 <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Total Sale Amount</th>
-                        <th>No. of Sales</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                    <t t-if="state.dashboardStats['product_sales_data'].length > 0">
-                        <tr t-foreach="state.dashboardStats['product_sales_data']" t-as="product"
-                            t-key="product['name']">
-                            <td><t t-esc="product['name']"/></td>
-                            <td><t t-esc="product['total_sale_amount']"/></td>
-                            <td><t t-esc="product['number_of_sales']"/></td>
-                        </tr>
-                    </t>
-                        <t t-else="">
-                        <tr>
-                            <td colspan="3">No product sales data available</td>
-                        </tr>
-                    </t>
-                </tbody>
-            </table>
-                <br/>
-                <h3 class="tk-primary font-weight-bold" align="center">Zeero Revenue</h3>
-                <table class="table table-bordered">
-                    <thead>
+                    <thead style="background-color: #c4d9a0;">
                         <tr>
                             <th>Employee</th>
+                            <t t-if="state.dashboardStats.all_sources">
+                                <t t-set="all_sources" t-value="state.dashboardStats.all_sources"/>
+                                <t t-foreach="all_sources" t-as="source" t-key="source">
+                                    <th><t t-esc="source"/></th>
+                                </t>
+                            </t>
+                            <th>Total Count</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-if="state.dashboardStats['zero_sales_employees'].length > 0">
-                        <tr t-foreach="state.dashboardStats['zero_sales_employees']" t-as="employee"
-                            t-key="employee['name']">
-                        <td>
-                            <t t-esc="employee['name']"/>
-                        </td>
-
-                        </tr>
+                        <t t-if="state.dashboardStats.employee_source_data">
+                            <t t-set="employee_data" t-value="state.dashboardStats.employee_source_data"/>
+                            <t t-foreach="employee_data" t-as="employee" t-key="employee.employee_name">
+                                <tr t-attf-class="#{employee.employee_name == 'Total' ? 'font-weight-bold bg-light' : ''}">
+                                    <td><t t-esc="employee.employee_name"/></td>
+                                    <t t-foreach="all_sources" t-as="source" t-key="source">
+                                        <td><t t-esc="employee[source]"/></td>
+                                    </t>
+                                    <td style="background-color:#f6f7f5;"><t t-esc="employee.total_count"/></td>
+                                </tr>
+                            </t>
                         </t>
-
-                        <tr t-if="!state.dashboardStats['zero_sales_employees'] || state.dashboardStats['employee_sales_data'].length === 0">
-                        <td colspan="4">No employee data available</td>
-                    </tr>
-                </tbody>
+                    </tbody>
                 </table>
+                <br/>
+                <h3 class="text-center font-weight-bold">Lead Quality-wise Employee Report</h3>
+                <table class="table table-bordered">
+                <thead style="background-color: #c4d9a0;">
+                    <tr>
+                        <th>Employee</th>
+                        <t t-set="lead_qualities" t-value="state.dashboardStats.lead_quality_labels"/>
+                        <t t-foreach="lead_qualities" t-as="label" t-key="label">
+                            <th><t t-esc="label"/></th>
+                        </t>
+                        <th>Total Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="employee_data" t-value="state.dashboardStats.employee_quality_data"/>
+                    <t t-set="quality_keys" t-value="state.dashboardStats.lead_quality_keys"/>
+                    <t t-foreach="employee_data" t-as="employee" t-key="employee.employee_name">
+                        <tr t-attf-class="#{employee.employee_name == 'Total' ? 'font-weight-bold bg-light' : ''}">
+                            <td><t t-esc="employee.employee_name"/></td>
+                            <t t-foreach="quality_keys" t-as="key" t-key="key">
+                                <td><t t-esc="employee[key]"/></td>
+                            </t>
+                            <td style="background-color:#f6f7f5;"><t t-esc="employee.total_count"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
 
             </div>
-
-
         </section>
     </t>
 </templates>

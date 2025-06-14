@@ -34,7 +34,6 @@ import { loadJS, loadCSS } from "@web/core/assets"
 
             }
 
-
             initializeStateValues() {
                 this.state = useState({
                     currency: '₹',
@@ -48,7 +47,12 @@ import { loadJS, loadCSS } from "@web/core/assets"
                         'sales_this_year': 0,
                         'employee_sales_data': [],
                         'product_sales_data': [],
-                        'zero_sales_employees':[]
+                        'zero_sales_employees':[],
+                        'employee_source_data': [],
+                        'all_sources':[],
+                        'employee_quality_data': [],
+                        'lead_quality_keys': [],
+                        'lead_quality_labels': [],
                     }
                 })
             }
@@ -105,5 +109,5 @@ import { loadJS, loadCSS } from "@web/core/assets"
 
         }
 
-        CustomDashboard.template = "tijus_odoo_dashboard.dashboard_template";
+        CustomDashboard.template = "leads_odoo_dashboard.dashboard_template";
         registry.category("actions").add("custom_dashboard", CustomDashboard);
