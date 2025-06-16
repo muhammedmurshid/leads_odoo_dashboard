@@ -3,9 +3,9 @@
     'author': 'Murshid',
     'version': "17.0.0.0",
     'sequence': "0",
-    'depends': ['base','web', 'custom_leads'],
+    'depends': ['base', 'web', 'hr', 'custom_leads'],
     'data': [
-        'views/menus.xml',
+        # 'views/menus.xml',
     ],
     'assets': {
         'web.assets_backend': [

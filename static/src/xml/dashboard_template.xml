@@ -106,7 +106,6 @@
                             <!--                            <t t-esc="employee['top_product']"/>-->
                             <!--                        </td>-->
                     </tr>
-
                         <tr t-if="!state.dashboardStats['employee_sales_data'] || state.dashboardStats['employee_sales_data'].length === 0">
                         <td colspan="3">No employee data available</td>
                     </tr>
