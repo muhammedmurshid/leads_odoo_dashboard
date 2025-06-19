@@ -35,10 +35,16 @@ import { loadJS, loadCSS } from "@web/core/assets"
             }
 
             initializeStateValues() {
+                const today = new Date();
+                const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+                const formatDate = (date) => date.toISOString().split("T")[0];
+
                 this.state = useState({
                     currency: '₹',
-                    from_date: '',
-                    to_date: '',
+                    from_date: formatDate(firstDay),
+                    to_date: formatDate(today),
+                    
                      dashboardStats: {
                         'sales_today': 0,
                         'sales_this_week': 0,
