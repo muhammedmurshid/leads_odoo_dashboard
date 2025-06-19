@@ -5,7 +5,7 @@
     'sequence': "0",
     'depends': ['base', 'web', 'hr', 'custom_leads'],
     'data': [
-        # 'views/menus.xml',
+        'views/menus.xml',
     ],
     'assets': {
         'web.assets_backend': [

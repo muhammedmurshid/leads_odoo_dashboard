@@ -35,7 +35,7 @@ class DashBoardsCustom(http.Controller):
             print(to_date, 'to')
         employee_sales_data = self.get_employee_sales_data(from_date,to_date)
         # product_sales_data = self.get_product_sales_data(from_date,to_date)
-        zero_sales_employees = self.get_employees_with_zero_sales(from_date,to_date)
+        # zero_sales_employees = self.get_employees_with_zero_sales(from_date,to_date)
         employee_source_data, all_sources = self.get_employee_lead_source_data(from_date, to_date)
         employee_quality_data, quality_labels, quality_keys = self.get_employee_lead_quality_data(from_date, to_date)
         return {
@@ -99,33 +99,33 @@ class DashBoardsCustom(http.Controller):
         ]
         return domain
 
-    def get_employees_with_zero_sales(self, from_date=None, to_date=None):
-        users = request.env['res.users'].search([('employee_id.department_id.name', '=', 'Sales')])  # Get all users
-        zero_sales_employees = []
-
-        # Convert string dates to datetime objects if provided
-        if from_date:
-            from_date = fields.Date.from_string(from_date)
-        if to_date:
-            to_date = fields.Date.from_string(to_date)
-
-        for user in users:
-            # Build domain for sales orders
-            domain = [
-                ('user_id', '=', user.id),
-                ('state', 'in', ['sale', 'done'])
-            ]
-            if from_date and to_date:
-                domain += [('date_order', '>=', from_date), ('date_order', '<=', to_date)]
-
-            # Check if the user has any sales orders in the specified date range
-            sales_orders = request.env['sale.order'].search(domain)
-            if not sales_orders:
-                print('No sale orders found for user:', user.name)  # Debugging line
-                zero_sales_employees.append(
-                    {'id': user.id, 'name': user.name})  # Add user to the list if no sales orders found
-
-        return zero_sales_employees
+    # def get_employees_with_zero_sales(self, from_date=None, to_date=None):
+    #     users = request.env['res.users'].search([('employee_id.department_id.name', '=', 'Sales')])  # Get all users
+    #     zero_sales_employees = []
+    #
+    #     # Convert string dates to datetime objects if provided
+    #     if from_date:
+    #         from_date = fields.Date.from_string(from_date)
+    #     if to_date:
+    #         to_date = fields.Date.from_string(to_date)
+    #
+    #     for user in users:
+    #         # Build domain for sales orders
+    #         domain = [
+    #             ('user_id', '=', user.id),
+    #             ('state', 'in', ['sale', 'done'])
+    #         ]
+    #         if from_date and to_date:
+    #             domain += [('date_order', '>=', from_date), ('date_order', '<=', to_date)]
+    #
+    #         # Check if the user has any sales orders in the specified date range
+    #         sales_orders = request.env['sale.order'].search(domain)
+    #         if not sales_orders:
+    #             print('No sale orders found for user:', user.name)  # Debugging line
+    #             zero_sales_employees.append(
+    #                 {'id': user.id, 'name': user.name})  # Add user to the list if no sales orders found
+    #
+    #     return zero_sales_employees
 
     def get_employee_lead_source_data(self, from_date=None, to_date=None):
         users = request.env['res.users'].search([
