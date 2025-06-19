@@ -129,7 +129,7 @@ class DashBoardsCustom(http.Controller):
 
     def get_employee_lead_source_data(self, from_date=None, to_date=None):
         users = request.env['res.users'].search([
-            ('employee_id.department_id.name', '=', 'Sales')
+            ('employee_id.department_id.name', 'in', ['Sales','Sales / Telecaller','Sales / Admission officer'])
         ])
         sources = request.env['leads.sources'].search([])
         all_sources = [s.name for s in sources]
@@ -182,7 +182,7 @@ class DashBoardsCustom(http.Controller):
 
     def get_employee_lead_quality_data(self, from_date=None, to_date=None):
         users = request.env['res.users'].search([
-            ('employee_id.department_id.name', '=', 'Sales')
+            ('employee_id.department_id.name', 'in', ['Sales','Sales / Telecaller','Sales / Admission officer'])
         ])
 
         lead_qualities = [
@@ -247,7 +247,7 @@ class DashBoardsCustom(http.Controller):
 
     def get_employee_sales_data(self, from_date=None, to_date=None):
         users = request.env['res.users'].search([
-            ('employee_id.department_id.name', '=', 'Sales')
+            ('employee_id.department_id.name', 'in', ['Sales','Sales / Telecaller','Sales / Admission officer'])
         ])
         employee_sales_data = []
 
